@@ -8,20 +8,27 @@ sub main
 
 sub calculate{
   my @inputs;
+  my %hashy;
   foreach my $i (0..3)  {
-  $inputs[$i] = <STDIN>;
+  my $name = <STDIN>;
+  my $age = <STDIN>;
+  $hashy{$name} = $age;
   }
-  my $sum1=0;
-  my $sum2=0;
-  
-  $sum1=$inputs[0]+$inputs[1];
-  $sum2=$inputs[2]+$inputs[3];
 
-  if( $sum1 > $sum2 ){
-    print $sum1;
+
+  my @answers;
+  foreach my $j (0..1)  {
+  my $pair1 = <STDIN>;
+  my $pair2 = <STDIN>;
+
+  $answers[$j]=$hashy{$pair1}+$hashy{$pair2};
+  }
+
+  if( $answers[0] > $answers[1] ){
+    print $answers[0];
   }
   else{
-    print $sum2;
+    print $answers[1] ;
   }
 
 }
