@@ -4,22 +4,23 @@ use warnings;
 sub main
 {
   my $directory = '/home/jamie/Documents/PerlIP/Assignment 2/Dummy/sub1';
+  opendir( my $DIR, $directory );
+    
+    
+    opendir(DIR, $directory);
+    my @folders;
 
-  opendir(DIR, $directory) or die $!;
-  my $file;
-  while ($file = readdir(DIR)) {
-      next(-d "$directory/$file");
-
-      print "$file\n";
-
-      # We only want files
-      next unless (-f "$directory/$file");
-
-      # Use a regular expression to find files ending in .txt
-      next unless ($file =~ m/\.jpg$/);
-
-      print "$file\n";
-
+    while ( my $entry = readdir DIR ) {
+    if($entry =~ m/\.txt$/){
+      print($entry."\n");
+    }
+    next unless -d $directory . '/' . $entry;
+    next if $entry eq '.' or $entry eq '..';
+    print($directory."/".$entry);
+    print("\n");
+ 
 }
+
+
 }
 main();
